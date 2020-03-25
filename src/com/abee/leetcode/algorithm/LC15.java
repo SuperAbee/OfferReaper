@@ -73,6 +73,40 @@ public class LC15 {
         return result;
     }
 
+    public List<List<Integer>> threeSum1(int[] nums) {
+        Arrays.sort(nums);
+
+        List<List<Integer>> result = new ArrayList<>();
+        Set<List<Integer>> test = new HashSet<>();
+        for (int i = 1; i < nums.length - 1; i++) {
+            int head = i - 1;
+            int tail = i + 1;
+            while (head >= 0 && tail < nums.length) {
+                int sum = nums[head] + nums[tail] + nums[i];
+                if (sum == 0) {
+                    List<Integer> t = new ArrayList<>();
+                    t.add(nums[head]);
+                    t.add(nums[tail]);
+                    t.add(nums[i]);
+                    if (!test.contains(t)) {
+                        result.add(t);
+                    }
+                    test.add(t);
+                    head--;
+                    tail++;
+                }
+
+                if (sum > 0) {
+                    head--;
+                }
+                if (sum < 0) {
+                    tail++;
+                }
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 //        HashSet<Integer> set1 = new HashSet<>();
 //        set1.add(1);
@@ -85,6 +119,8 @@ public class LC15 {
         int[] test = {-6,-8,-9,4,-14,6,-10,7,12,13,4,9,7,14,-12,7,0,14,-1,-3,2,2,-3,11,-6,-10,-13,-13,1,-9,2,2,-2,8,-9,0,-9,-12,14,10,8,3,4,0,-6,7,14,9,6,-2,13,-15,8,-5,3,-13,-8,5,-11,0,11,6,-13,-14,-9,-15,-7,-11,10,-7,14,4,3,3,11,13,-13,11,-1,0,-6,-10,0,9,0,10,11,0,0,-14,-15,-12,-1,10,12,-2,2,-10,2,-2,-10,2,-13,1,12,5,-1,-15,1,5,-8,3,10,8};
 
         LC15 lc15 = new LC15();
-        System.out.println(lc15.threeSum(test).toString());
+        List<List<Integer>> r1 = lc15.threeSum(test);
+        List<List<Integer>> r2 = lc15.threeSum1(test);
+        System.out.println(r1.size() + " " + r2.size());
     }
 }
