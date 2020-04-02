@@ -50,11 +50,11 @@ public class LC2 {
             System.out.print(node.val + " ");
         }
     }
-}
 
-class ListNode {
-    int val;
-    ListNode next;
-    public ListNode(int x) { val = x; }
+    static class ListNode {
+        int val;
+        ListNode next;
+        public ListNode(int x) { val = x; }
+    }
 }
 
